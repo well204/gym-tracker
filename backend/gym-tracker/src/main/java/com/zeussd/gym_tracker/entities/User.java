@@ -3,6 +3,7 @@ package com.zeussd.gym_tracker.entities;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
 
 public class User implements Serializable {
@@ -14,6 +15,7 @@ public class User implements Serializable {
     private String password;
     private Double userWeight;
     private Double userHeight;
+    private List<Workout> workouts;
 
     public User() {}
 
