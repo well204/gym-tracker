@@ -16,6 +16,9 @@ public class Set {
     private UUID id; 
     private Integer reps;
     private String notes;
+    
+    @ManyToOne
+    @JoinColumn(name = "exercise_id")
     private Exercise exercise;
 
     @ManyToOne

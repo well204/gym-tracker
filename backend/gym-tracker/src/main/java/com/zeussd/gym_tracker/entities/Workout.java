@@ -10,6 +10,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -30,6 +31,8 @@ public class Workout {
     private LocalDateTime startTime;
     private LocalDateTime endTime;
     private boolean finished;
+    
+    @OneToMany(mappedBy = "workout")
     private List<Set> sets;
 
     @ManyToOne
