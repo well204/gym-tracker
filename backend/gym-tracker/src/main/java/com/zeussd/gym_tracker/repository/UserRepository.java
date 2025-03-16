@@ -5,9 +5,9 @@ import java.util.UUID;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.zeussd.gym_tracker.entities.Exercise;
+import com.zeussd.gym_tracker.entities.User;
 
 @Repository
-public interface ExerciseRepository extends JpaRepository<Exercise, UUID>{
-	
+public interface  UserRepository extends JpaRepository<User, UUID> {
+
 }

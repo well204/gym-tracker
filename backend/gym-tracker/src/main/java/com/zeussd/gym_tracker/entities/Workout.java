@@ -35,7 +35,7 @@ public class Workout {
     
     @OneToMany(mappedBy = "workout")
     private List<Set> sets;
-
+    
     @ManyToOne
     @JoinColumn(name="user_id")
     private User user;
