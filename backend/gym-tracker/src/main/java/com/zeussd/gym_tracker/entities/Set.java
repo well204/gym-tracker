@@ -1,6 +1,5 @@
 package com.zeussd.gym_tracker.entities;
 import java.io.Serial;
-import java.io.Serializable;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -10,7 +9,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "sets")
-public class Set implements Serializable{
+public class Set {
     @Serial
     private static final long serialVersionUID = 1L;
 
