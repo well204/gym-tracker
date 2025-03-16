@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.zeussd.gym_tracker.entities.Exercise;
@@ -20,6 +19,9 @@ import com.zeussd.gym_tracker.repository.ExerciseRepository;
 @RequestMapping(value = "/exercises")
 public class ExerciseController {
 	
+	
+	// private static final Logger logger = LoggerFactory.getLogger(ExerciseController.class);
+
 	@Autowired
 	private ExerciseRepository exerciseRepository;
 
@@ -31,8 +33,8 @@ public class ExerciseController {
 	
 	@PostMapping
 	public ResponseEntity<Exercise> createExercise (@RequestBody Exercise exercise){
+		// logger.info("Received exercise: " + exercise.toString());
 		Exercise savedExercise = exerciseRepository.save(exercise);
-		
 		return ResponseEntity.ok(savedExercise);
 	}
 	
