@@ -3,6 +3,7 @@ import java.util.UUID;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -12,14 +13,17 @@ import jakarta.persistence.Table;
 @Table(name = "sets")
 public class Set {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id; 
     private Integer reps;
     private String notes;
+    
+    @ManyToOne
+    @JoinColumn(name = "exercise_id")
     private Exercise exercise;
 
     @ManyToOne
-    @JoinColumn(name="workouts")
+    @JoinColumn(name="workout_id")
     private Workout workout;
 
 }

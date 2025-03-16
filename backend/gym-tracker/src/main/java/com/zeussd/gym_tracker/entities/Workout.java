@@ -7,9 +7,11 @@ import java.util.UUID;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -24,12 +26,14 @@ import lombok.Setter;
 @Table(name="workouts")
 public class Workout {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
     private String workoutName;
     private LocalDateTime startTime;
     private LocalDateTime endTime;
     private boolean finished;
+    
+    @OneToMany(mappedBy = "workout")
     private List<Set> sets;
 
     @ManyToOne
