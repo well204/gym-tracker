@@ -15,13 +15,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
 @Entity
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name="workout")
+@Table(name="workouts")
 public class Workout {
     @Id
     @GeneratedValue
