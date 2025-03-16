@@ -1,31 +1,29 @@
 package com.zeussd.gym_tracker.entities;
 
-
-import java.io.Serial;
-import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
+import java.util.UUID;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
 @Table (name = "users")
-public class User implements Serializable {
-    @Serial
-    private static final long serialVersionUID = 1L;
-
+@AllArgsConstructor
+@NoArgsConstructor
+public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long userId;
+    @GeneratedValue
+    private UUID userId;
     private String userName;
     private String password;
     private Double userWeight;
@@ -33,58 +31,6 @@ public class User implements Serializable {
     
     @OneToMany(mappedBy="user")
     private List<Workout> workouts;
-
-    public User() {}
-
-    public User(Long userId, String userName, String password, Double userWeight,
-                Double userHeight) {
-        super();
-        this.userId = userId;
-        this.userName = userName;
-        this.password = password;
-        this.userWeight = userWeight;
-        this.userHeight = userHeight;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
-
-    public Double getUserHeight() {
-        return userHeight;
-    }
-
-    public void setUserHeight(Double userHeight) {
-        this.userHeight = userHeight;
-    }
-
-    public Double getUserWeight() {
-        return userWeight;
-    }
-
-    public void setUserWeight(Double userWeight) {
-        this.userWeight = userWeight;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
 
     public void shareProfile() {}
 
