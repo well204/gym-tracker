@@ -5,7 +5,7 @@ Um app para amantes de musculação e fitness
 
 ## Tecnologias
 
-Tecnologias: java, springBoot, postgreSql, JavaScript, React, ReactNative
+Tecnologias: Java, SpringBoot, postgreSql, Angular, React, ReactNative
 
 ## Detalhes do projeto
 
