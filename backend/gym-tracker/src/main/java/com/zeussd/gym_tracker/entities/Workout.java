@@ -1,18 +1,29 @@
 package com.zeussd.gym_tracker.entities;
 
-import java.io.Serial;
 import java.io.Serializable;
 import java.util.List;
+import java.util.UUID;
 
-import com.zeussd.gym_tracker.entities.Exercise;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Table
 public class Workout implements Serializable {
-    @Serial
-    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue
+    private UUID id;
     private long workoutId;
     private String workoutName;
     private long duration;
     private boolean finished;
     private List<Exercise> exercises;
-    public Workout() {}
 }
