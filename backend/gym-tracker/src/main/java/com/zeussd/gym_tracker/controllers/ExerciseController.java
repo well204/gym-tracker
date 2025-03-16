@@ -16,6 +16,8 @@
 
 	import com.zeussd.gym_tracker.entities.Exercise;
 	import com.zeussd.gym_tracker.repository.ExerciseRepository;
+import org.springframework.web.bind.annotation.PutMapping;
+
 
 
 
@@ -41,6 +43,25 @@
 
 			if (exercise.isPresent()){
 				return ResponseEntity.ok(exercise.get());
+			}else{
+				return ResponseEntity.notFound().build();
+			}
+		}
+
+		@PutMapping("/{id}")
+		public ResponseEntity<Exercise> updateExerciseById(@PathVariable(value = "id") UUID id, @RequestBody Exercise exerciseDetails) {
+			Optional<Exercise> searchedExercise = exerciseRepository.findById(id);
+
+			if(searchedExercise.isPresent()){
+				Exercise exercise = searchedExercise.get();
+				
+				exercise.setExerciseName(exerciseDetails.getExerciseName());
+				exercise.setExerciseDescription(exerciseDetails.getExerciseDescription());
+				exercise.setExerciseIcon(exerciseDetails.getExerciseIcon());
+				exercise.setEquipamentType(exerciseDetails.getEquipamentType());
+
+				Exercise updatedExercise = exerciseRepository.save(exercise);
+				return ResponseEntity.ok(updatedExercise);
 			}else{
 				return ResponseEntity.notFound().build();
 			}
