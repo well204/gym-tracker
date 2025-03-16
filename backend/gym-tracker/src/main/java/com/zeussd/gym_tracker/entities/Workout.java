@@ -2,6 +2,7 @@ package com.zeussd.gym_tracker.entities;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 import jakarta.persistence.Entity;
@@ -29,6 +30,7 @@ public class Workout {
     private LocalDateTime startTime;
     private LocalDateTime endTime;
     private boolean finished;
+    private List<Set> sets;
 
     @ManyToOne
     @JoinColumn(name="user_id")
