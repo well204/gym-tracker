@@ -21,7 +21,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name="workout")
+@Table(name="workouts")
 public class Workout {
     @Id
     @GeneratedValue
