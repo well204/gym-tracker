@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-import org.apache.catalina.connector.Response;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
@@ -72,6 +71,27 @@ public class ExerciseController {
 			@RequestParam(required = false) String exerciseDescription,
 			@RequestParam(required = false) String equipamentType) {
 
+		if(keyword != null && !keyword.isEmpty()){
+			List<Exercise> exercises = exerciseRepository.searchByKeyword(keyword);
+			return ResponseEntity.ok(exercises);
+		}
+
+		if(exerciseName != null && !exerciseName.isEmpty()){
+			List<Exercise> exercises = exerciseRepository.findByExerciseNameContainingIgnoreCase(exerciseName);
+			return ResponseEntity.ok(exercises);
+		}
+
+		if(exerciseDescription != null && !exerciseDescription.isEmpty()){
+			List<Exercise> exercises = exerciseRepository.findByExerciseDescriptionContainingIgnoreCase(exerciseDescription);
+			return ResponseEntity.ok(exercises);
+		}
+
+		if(equipamentType != null && !equipamentType.isEmpty()){
+			List<Exercise> exercises = exerciseRepository.findByEquipamentTypeContainingIgnoreCase(equipamentType);
+			return ResponseEntity.ok(exercises);
+		}
+
+	
 		List<Exercise> exercises = exerciseRepository.findAll();
 		return ResponseEntity.ok(exercises);
 	}
