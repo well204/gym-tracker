@@ -12,13 +12,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.zeussd.gym_tracker.entities.User;
 import com.zeussd.gym_tracker.repository.UserRepository;
 
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
 
 
 
@@ -49,8 +49,8 @@ public class UserController {
     @PostMapping
     public ResponseEntity<User> createUser(@RequestBody User user) {
         User savedUser = userRepository.save(user);
-    return  ResponseEntity.ok(savedUser);
-    }
+    return ResponseEntity.ok(savedUser);
+}
     
     @PutMapping("/{id}")
     public ResponseEntity<User> updateUser(@PathVariable ("id")UUID id, @RequestBody User user) {
