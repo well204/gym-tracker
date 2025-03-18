@@ -5,6 +5,10 @@ import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -14,13 +18,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.zeussd.gym_tracker.entities.User;
 import com.zeussd.gym_tracker.repository.UserRepository;
-
-
-
 
 @RestController
 @RequestMapping(value ="/users")
@@ -67,6 +69,26 @@ public class UserController {
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
+
+    @GetMapping("/search")
+    public ResponseEntity<List<User>> searchUserName(@RequestParam(required=false)String userName) {
+        List<User> users = userRepository.findByUserNameContainingIgnoringCase(userName);
+        return ResponseEntity.ok(users);
+    }
+
+    @GetMapping("/paginated")
+	public ResponseEntity<Page<User>> getAllUsersPaginated(
+		@RequestParam(defaultValue = "0") int page,
+		@RequestParam(defaultValue = "10") int size,
+		@RequestParam(defaultValue = "userName") String sortBy,
+		@RequestParam(defaultValue = "asc") String direction
+		
+	){
+		Sort.Direction sortDirection = direction.equalsIgnoreCase("desc") ? Sort.Direction.DESC : Sort.Direction.ASC;
+		Pageable pageable = PageRequest.of(page, size, Sort.by(sortDirection, sortBy));
+		Page<User> users = userRepository.findAll(pageable);
+		return ResponseEntity.ok(users);
+	}
     
     @DeleteMapping("/{id}")
     public ResponseEntity<HttpStatus> deleteUser(@PathVariable("id") UUID id) {
