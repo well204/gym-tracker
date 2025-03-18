@@ -10,7 +10,6 @@ import org.springframework.stereotype.Repository;
 
 import com.zeussd.gym_tracker.entities.Exercise;
 
-
 @Repository
 public interface ExerciseRepository extends JpaRepository<Exercise, UUID>{
 	List<Exercise> findByExerciseNameContainingIgnoreCase(String exerciseName);

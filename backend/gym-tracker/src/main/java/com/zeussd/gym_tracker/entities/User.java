@@ -3,6 +3,8 @@ package com.zeussd.gym_tracker.entities;
 import java.util.List;
 import java.util.UUID;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -18,7 +20,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-@Table (name = "users")
+@Table(name = "users")
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(of="userId")
@@ -32,5 +34,6 @@ public class User {
     private Double userHeight;
     
     @OneToMany(mappedBy="user")
+    @JsonManagedReference
     private List<Workout> workouts;
 }

@@ -5,6 +5,8 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -35,9 +37,10 @@ public class Workout {
     
     @OneToMany(mappedBy = "workout")
     private List<Set> sets;
-
+    
     @ManyToOne
     @JoinColumn(name="user_id")
+    @JsonBackReference 
     private User user;
 
     public long getDuration() {
